@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.neon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  cursor: pointer;
+}
+
+.neon-text {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #00f, 0 0 80px #00f;
+}
+
+.neon-letter {
+  display: inline-block;
+  opacity: 0;
+}
+
+.explore-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #0ff;
+  background: transparent;
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+.explore-button:hover {
+  background: #0ff;
+  color: black;
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #00f;
+}
