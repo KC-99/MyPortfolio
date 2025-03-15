@@ -1,27 +1,54 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WordCloudBackground from "./components/WordCloudBackground";
-import BookScene from "./components/BookScene";
+import BookSceneWrapper from "./components/BookScene";
+import SideMenu from "./components/SideMenu";
+import AboutPage from "./components/AboutPage";
+import WorkPage from "./components/WorkPage"; 
+import ProjectsPage from "./components/ProjectsPage"; 
+import SocialsPage from "./components/SocialsPage"; 
 
 const App: React.FC = () => {
-  return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      {/* Background Word Cloud */}
-      <WordCloudBackground />
 
-      {/* Book Scene - Positioned Above Word Cloud */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          zIndex: 1, // Ensures Book is above Word Cloud
-          pointerEvents: "auto", // Allows interaction with the book
-        }}
-      >
-        <BookScene />
-      </div>
-    </div>
+
+  return (
+    <Router>
+      <Routes>
+        {/* Book Scene with Word Cloud */}
+        <Route
+          path="/"
+          element={
+            <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
+              {/* Background Word Cloud */}
+              <WordCloudBackground />
+              {/* Side Menu Component */}
+              <SideMenu
+              />
+              {/* Book Scene - Centered on the Page */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 1, // Ensures Book is above Word Cloud
+                  pointerEvents: "auto", // Allows interaction with the book
+                  width: "100vw",
+                  height: "100vh",
+                }}
+              >
+                <BookSceneWrapper/>
+              </div>
+            </div>
+          }
+        />
+        {/* Individual Page Routes */}
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/work" element={<WorkPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/socials" element={<SocialsPage />} />
+      </Routes>
+    </Router>
   );
 };
 

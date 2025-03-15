@@ -129,7 +129,7 @@ const WordCloudBackground: React.FC = () => {
         width: "100vw",
         height: "100vh",
         zIndex: -1,
-        filter: "brightness(0.2)", // Reduced brightness of the background
+        filter: "brightness(0.5)", // Reduced brightness of the background
       }}
     />
   );
