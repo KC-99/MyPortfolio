@@ -6,6 +6,8 @@ const AboutPage: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate(); // ✅ Initialize navigate
 
+  
+
   return (
     <div
       style={{
@@ -199,9 +201,9 @@ const AboutPage: React.FC = () => {
             {/* ✅ Next Page Button (Centered at Bottom) */}
             <div
         style={{
-          position: "absolute",
-          bottom: "80px",
-          left: "50%",
+          position: "relative",
+          bottom: "10px",
+          left: "30%",
           transform: "translateX(-50%)",
           textAlign: "center",
         }}

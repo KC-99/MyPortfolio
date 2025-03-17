@@ -111,18 +111,16 @@ const WorkPage: React.FC = () => {
           Tata Consultancy Services (TCS)
         </h2>
         <p style={{ fontSize: "16px", lineHeight: "1.6", textAlign: "justify" }}>
-          My career began at **TCS**, where I developed foundational skills in **SQL, Python, and BI reporting**. 
-          I was responsible for creating **interactive dashboards in Tableau** and integrating business data 
-          into meaningful reports.
+        During my tenure at TCS, I supported a global health insurance provider by building real-time dashboards to help their teams monitor key operational metrics effectively. The dashboards were designed to automatically capture and display live data updates, such as the status of insurance claims, vendor management metrics, and overall operational efficiency. To achieve this real-time functionality, I utilized technologies like WebSockets, which allowed continuous data streaming, ensuring users could instantly see changes. I also focused on optimizing these dashboards to be user-friendly and fully responsive across all devices, incorporating modern frontend techniques such as React.js and responsive CSS practices. Additionally, accessibility was a core priority—I ensured all visual dashboards met international accessibility standards, enabling every employee, including those with disabilities, to seamlessly interact with vital business information. My technical work also encompassed database optimization tasks, ensuring queries returned data rapidly, thus supporting quick decision-making within a fast-paced insurance domain.
         </p>
       </div>
 
       {/* ✅ Navigation Buttons */}
       <div
         style={{
-          position: "absolute",
-          bottom: "30px",
-          left: "50%",
+          position: "relative",
+          bottom: "10px",
+          left: "40%",
           transform: "translateX(-50%)",
           display: "flex",
           gap: "20px",

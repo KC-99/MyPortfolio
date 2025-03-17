@@ -18,7 +18,7 @@ type BookSceneProps = {
 };
 
 const BookScene: React.FC<BookSceneProps> = ({ 
-  openBook,
+  openBook, setMenuOpen
 }: BookSceneProps) => {
   const bookRef = useRef<THREE.Group>(null);
   const topCoverRef = useRef<THREE.Group>(null);
@@ -60,17 +60,19 @@ const BookScene: React.FC<BookSceneProps> = ({
   // Camera animation
   useEffect(() => {
     // After the book is open and the page is ready, focus on the page
-    if (openBook && hasFallen && pageReady && !focusedOnPage) {
+    
+    
+    if (openBook && hasFallen  && !focusedOnPage) {
       const focusTimeout = setTimeout(() => {
         setFocusedOnPage(true);
         
         // Set a timer to enable controls after initial focus animation completes
         const enableControlsTimeout = setTimeout(() => {
           setInitialFocusComplete(true);
-        }, 1500); // 1.5 seconds should be enough for the camera animation
+        }, 1000); // 1.5 seconds should be enough for the camera animation
         
         return () => clearTimeout(enableControlsTimeout);
-      }, 500); // Short delay to allow cover to open
+      }, 1000); // Short delay to allow cover to open
 
       return () => clearTimeout(focusTimeout);
     }
@@ -190,12 +192,18 @@ const BookScene: React.FC<BookSceneProps> = ({
             20,    // Higher up for a top-down view
             15    // At a distance to see the full page
           );
+
+          if (bookRef.current) {
+            bookRef.current.visible = true;
+          }
           
           // Smoothly interpolate camera position
           camera.position.lerp(targetPosition, delta * 2);
           
           // Set camera to look at the page
           camera.lookAt(pagePosition);
+
+        
           
           // Disable controls during initial animation
           controlsRef.current.enabled = false;
@@ -341,9 +349,9 @@ const BookScene: React.FC<BookSceneProps> = ({
 
         {/* Pages inside the book */}
         {openBook && pageReady && (
-          <group ref={pageRef} position={[0, 0.2, 0]}>
+          <group ref={pageRef} position={[0, 0.2, 0]} visible = {true}>
             {/* First page with increased brightness */}
-            <FirstPage />
+            <FirstPage setMenuOpen={setMenuOpen}/>
           </group>
         )}
       </group>

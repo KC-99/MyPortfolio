@@ -5,10 +5,21 @@
   stroke: #ffffff; /* White stroke */
   stroke-width: 3px;
   /* The dash array should match roughly the length of the text path */
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
   animation: drawText 2s forwards;
 }
+
+/* Slower Animation for Mobile */
+@media (max-width: 768px) {
+  .animated-text {
+    font-size: 60px; /* Slightly smaller text for mobile */
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: drawText 5s ease-in-out 0.5s forwards; /* 5s animation, 0.5s delay */
+  }
+}
+
 
 @keyframes drawText {
   to {
