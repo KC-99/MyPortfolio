@@ -1,6 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WordCloudBackground from "./components/WordCloudBackground";
 import BookSceneWrapper from "./components/BookScene";
 import SideMenu from "./components/SideMenu";
 import AboutPage from "./components/AboutPage";
@@ -10,7 +9,7 @@ import SocialsPage from "./components/SocialsPage";
 
 const App: React.FC = () => {
 
-
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <Router>
       <Routes>
@@ -19,11 +18,8 @@ const App: React.FC = () => {
           path="/"
           element={
             <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-              {/* Background Word Cloud */}
-              <WordCloudBackground />
               {/* Side Menu Component */}
-              <SideMenu
-              />
+              <SideMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
               {/* Book Scene - Centered on the Page */}
               <div
                 style={{

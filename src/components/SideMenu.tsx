@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type SideMenuProps = {
@@ -8,15 +8,25 @@ type SideMenuProps = {
 };
 
 const SideMenu: React.FC<SideMenuProps> = ({
-    menuOpen = false,
-    setMenuOpen = () => {},
-    setNavigateToAbout = () => {},
-  }) => {
-    const navigate = useNavigate(); // ✅ React Router navigation
+  menuOpen = false,
+  setMenuOpen = () => {},
+  setNavigateToAbout = () => {},
+}) => {
+  const navigate = useNavigate();
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  // Control animation delay for each menu item
+  useEffect(() => {
+    if (menuOpen) {
+      setTimeout(() => setMenuVisible(true), 200); // Delay for menu items to slide in
+    } else {
+      setMenuVisible(false);
+    }
+  }, [menuOpen]);
 
   return (
     <>
-      {/* ✅ Hamburger Icon (Always Visible) */}
+      {/* ✅ Hamburger Icon */}
       <div
         style={{
           position: "absolute",
@@ -35,7 +45,6 @@ const SideMenu: React.FC<SideMenuProps> = ({
         }}
         onClick={() => setMenuOpen(!menuOpen)}
       >
-        {/* ✅ Clean Hamburger Icon */}
         <div
           style={{
             width: "24px",
@@ -45,33 +54,9 @@ const SideMenu: React.FC<SideMenuProps> = ({
             justifyContent: "space-between",
           }}
         >
-          <span
-            style={{
-              display: "block",
-              width: "100%",
-              height: "3px",
-              backgroundColor: "#fff",
-              borderRadius: "2px",
-            }}
-          ></span>
-          <span
-            style={{
-              display: "block",
-              width: "100%",
-              height: "3px",
-              backgroundColor: "#fff",
-              borderRadius: "2px",
-            }}
-          ></span>
-          <span
-            style={{
-              display: "block",
-              width: "100%",
-              height: "3px",
-              backgroundColor: "#fff",
-              borderRadius: "2px",
-            }}
-          ></span>
+          <span style={{ width: "100%", height: "3px", backgroundColor: "#fff", borderRadius: "2px" }}></span>
+          <span style={{ width: "100%", height: "3px", backgroundColor: "#fff", borderRadius: "2px" }}></span>
+          <span style={{ width: "100%", height: "3px", backgroundColor: "#fff", borderRadius: "2px" }}></span>
         </div>
       </div>
 
@@ -80,16 +65,16 @@ const SideMenu: React.FC<SideMenuProps> = ({
         style={{
           position: "absolute",
           top: 0,
-          left: menuOpen ? "0" : "-300px", // ✅ Hidden when closed
-          width: "250px", // ✅ Fixed width
+          left: menuOpen ? "0" : "-300px",
+          width: "250px",
           height: "100vh",
           background: "rgba(10, 10, 10, 0.95)",
           boxShadow: menuOpen ? "4px 0px 10px rgba(255, 255, 255, 0.2)" : "none",
-          transition: "left 0.3s ease-in-out",
+          transition: "left 0.4s ease-in-out",
           display: "flex",
           flexDirection: "column",
           padding: "20px",
-          zIndex: 99, // ✅ Below hamburger icon
+          zIndex: 99,
         }}
       >
         {/* ✅ Close Button */}
@@ -108,9 +93,9 @@ const SideMenu: React.FC<SideMenuProps> = ({
           ✕
         </button>
 
-        {/* ✅ Menu Items */}
+        {/* ✅ Animated Menu Items */}
         <ul style={{ listStyle: "none", padding: 0 }}>
-          {["Home", "About", "Work", "Projects", "Socials"].map((item) => (
+          {["Home", "About", "Work", "Projects", "Socials"].map((item, index) => (
             <li
               key={item}
               style={{
@@ -118,24 +103,27 @@ const SideMenu: React.FC<SideMenuProps> = ({
                 fontSize: "18px",
                 color: "#fff",
                 cursor: "pointer",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.2)",
+                marginLeft: "20px",
+                opacity: menuVisible ? 1 : 0,
+                transform: menuVisible ? "translateX(0)" : "translateX(-50px)",
+                transition: `opacity 0.4s ease-in-out ${index * 0.1}s, transform 0.4s ease-in-out ${index * 0.1}s`,
               }}
               onClick={() => {
-                setMenuOpen(false); // ✅ Close menu
+                setMenuOpen(false); // Close menu
 
                 if (item === "Home") {
-                  navigate("/"); // ✅ Navigate to landing page
+                  navigate("/");
                 } else if (item === "About") {
-                  if (setNavigateToAbout) setNavigateToAbout(true); // ✅ Trigger book flipping animation
+                  if (setNavigateToAbout) setNavigateToAbout(true);
                   setTimeout(() => {
-                    navigate("/about"); // ✅ Navigate after animation
+                    navigate("/about");
                   }, 1200);
                 } else if (item === "Work") {
-                  navigate("/work"); // ✅ Navigate to Work Page
+                  navigate("/work");
                 } else if (item === "Projects") {
-                  navigate("/projects"); // ✅ Navigate to Projects Page
+                  navigate("/projects");
                 } else if (item === "Socials") {
-                  navigate("/socials"); // ✅ Navigate to Socials Page
+                  navigate("/socials");
                 }
               }}
             >

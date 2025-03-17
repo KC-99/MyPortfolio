@@ -1,0 +1,17 @@
+.animated-text {
+  font-family: sans-serif;
+  font-size: 80px; /* Adjust to your desired size */
+  fill: none;
+  stroke: #ffffff; /* White stroke */
+  stroke-width: 3px;
+  /* The dash array should match roughly the length of the text path */
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawText 2s forwards;
+}
+
+@keyframes drawText {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
