@@ -10,7 +10,7 @@ const WorkPage: React.FC = () => {
     <div
       style={{
         width: "100vw",
-        height: "100vh",
+        minHeight: "100vh",
         backgroundColor: "#111",
         color: "#fff",
         fontSize: "18px",

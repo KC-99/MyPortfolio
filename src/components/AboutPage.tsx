@@ -13,7 +13,7 @@ const AboutPage: React.FC = () => {
       style={{
         position: "relative",
         width: "100vw",
-        height: "100vh",
+        minHeight: "100vh",
         backgroundColor: "#111",
         color: "#fff",
         fontSize: "18px",
@@ -106,7 +106,7 @@ const AboutPage: React.FC = () => {
             objectPosition: "center", // Keeps face centered
             borderRadius: "50%",
             marginBottom: "20px",
-            marginTop: "100x",
+            marginTop: "20px",
           }}
         />
 
